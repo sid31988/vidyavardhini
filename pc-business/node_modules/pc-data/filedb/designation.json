@@ -1,0 +1,27 @@
+[
+    {
+        "id": 1,
+        "name": "Analyst",
+        "salary": 10000
+    },
+    {
+        "id": 2,
+        "name": "Sr Analyst",
+        "salary": 20000
+    },
+    {
+        "id": 3,
+        "name": "Team Lead",
+        "salary": 30000
+    },
+    {
+        "id": 4,
+        "name": "Project Manager",
+        "salary": 50000
+    },
+    {
+        "id": 5,
+        "name": "Delivery Manager",
+        "salary": 55000
+    }
+]
