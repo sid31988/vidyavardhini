@@ -3,7 +3,7 @@ const path = require("path");
 
 module.exports.FileHelper = class FileHelper {
     readFromFile(fileName, callback) {
-        var filePath = path.join(".", "filedb", `${fileName}.json`);
+        var filePath = path.join(__dirname, "..", "filedb", `${fileName}.json`);
         var errorFound = false;
         //Error first callback implementation
         fs.exists(filePath, (exists) => {
@@ -29,7 +29,7 @@ module.exports.FileHelper = class FileHelper {
     }
 
     writeToFile(fileName, data, callback) {
-        var filePath = path.join(".", "filedb", `${fileName}.json`);
+        var filePath = path.join(__dirname, "..", "filedb", `${fileName}.json`);
         fs.writeFile(filePath, data, (err) => {
             if(typeof err != "undefined" && err != null) {
                 callback(err, null);
