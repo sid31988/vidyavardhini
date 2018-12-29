@@ -17,13 +17,13 @@ module.exports.EmployeeViewModelHelper = class EmployeeViewModelHelper {
             }
             else {
                 var employeeViewModel = new EmployeeViewModel();
-                employeeViewModel.employee = employeeData;
+                employeeViewModel.employee = employeeData[0];
                 this.designationHelper.read(employeeViewModel.employee.designationId, (designationReadErr, designationData) => {
                     if(typeof designationReadErr != "undefined" && designationReadErr != null) {
                         callback(designationReadErr, null);
                     }
                     else {
-                        employeeViewModel.designation = designationData;
+                        employeeViewModel.designation = designationData[0];
     
                         this.timesheetHelper.read(null, (timesheetReadError, timesheetData) => {
                             if(typeof timesheetReadError != "undefined" && timesheetReadError != null) {

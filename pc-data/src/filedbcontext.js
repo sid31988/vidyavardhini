@@ -78,7 +78,7 @@ module.exports.FileDbContext = class FileDbContext extends BaseDbContext {
                     var items = jsonString.length > 0 ? JSON.parse(jsonString) : [];
                     if(typeof id != "undefined" && id != null) {
                         var filteredItems = items.filter(x => x.id == id);
-                        callback(null, filteredItems[0]);
+                        callback(null, filteredItems);
                     }
                     else {
                         callback(null, items);
