@@ -1,0 +1,186 @@
+//Scope
+function parent() {
+	var name = "Parent function";
+	var child = function () {
+		var name = "Child function";
+		console.log(name);
+	}
+	return child;
+}
+
+//Context
+
+var obj = {
+		name: "Abhishek",
+		print: function() {
+			console.log(this.name);
+		}
+	};
+
+obj.print();
+
+var obj2 = {
+		name: "Siddharth",
+		print: obj.print
+	};
+obj2.print()
+
+// Prototyping
+function Student() {
+	this.name = "ABC";
+	this.age = 25;
+	this.print = function() {
+		console.log("Name: " + this.name + "; Age: " + this.age);
+	}
+}
+
+var obj = new Student();
+obj.print();
+
+// Constructor Functions
+function Student(name, age) {
+	this.name = name;
+	this.age = age;
+	this.print = function() {
+		//console.log("Name: " + this.name + "; Age: " + this.age);
+		// String interpolation
+		console.log(`Name: ${this.name}; Age: ${this.age}`);
+	}
+}
+
+var obj = new Student("Siddharth", 30);
+obj.print();
+
+// A simple try
+function someFunction() {
+	console.log(arguments);
+	console.log("Some Function!!!");
+}
+
+someFunction(1, 2, 4);
+
+// REST parameter
+function add(...numbers) {
+	var sum = 0;
+	for(var i = 0; i < numbers.length; i++) {
+		sum += numbers[i];
+	}
+	return sum;
+}
+
+add(1, 2);
+add(1, 2, 3, 4, 5, 6);
+
+// Passing REST parameter
+function add(...numbers) {
+	var result = calcService("+", ...numbers);
+}
+
+function calcService(type, ...numbers) {
+	var sum = 0;
+	for(var i = 0; i < numbers.length; i++) {
+		switch(type) {
+			case "+":
+				sum += numbers[i];
+				break;
+		}
+	}
+	return sum;
+}	
+
+add(1, 2);
+add(1, 2, 3, 4, 5, 6);
+
+// Protyping is a paradigm in programming, where we create object on basis of a prototype or a base object.
+// In Javascript, we acheive prototyping using the prototype keyword.
+
+function Student(name, age) {
+	this.name = name;
+	this.age = age;
+	this.print = function() {
+		console.log(`Name: ${this.name}; Age: ${this.age}`);
+	}
+}
+
+var obj1 = new Student("Abhishek", 30);
+var obj2 = new Student("Johnson", 25);
+
+// Both the objects above share similar variables, yet they are different i.e. a deep copy of the base prototype Student
+// Hence changing on object's property or function won't affect the another
+obj2.print = function() { console.log("A new print function!!!"); }
+obj1.print();
+obj2.print();
+
+// Using prototyping we can make uniform changes across all the derived objects.
+Student.prototype.printNew = function () { console.log("A printNew implementation!!!"); }
+
+// Now both the objects will have a separate copy of the printNew, although similar in signature and definition, since it was implemented through the prototype keyword
+obj1.printNew();
+obj2.printNew();
+
+
+// Prototype chaining
+
+function Person(name, age, address) {
+	this.name = name;
+	this.age = age;
+	this.address = address;
+	this.printDetails = function() {
+		console.log(`Name = ${this.name}, Age = ${this.age}, Address = ${this.address}`);
+	};
+}
+
+function Student(name, age, address, collegeName) {
+	Person.call(this, name, age, address);
+	this.collegeName = collegeName;
+}
+
+Student.prototype.__proto__ = Person.prototype;
+
+var objStudent1 = new Student("Avinash", 20, "Vasai Rd", "VidyaVasini College");
+var objStudent2 = new Student("Sandeep", 21, "Vasai Rd", "Vartak College");
+
+objStudent1.printDetails();
+objStudent2.printDetails();
+
+var objPerson1 = {};
+Person.call(objPerson1, "Carol", 19, "Vasai Road");
+
+// The class keyword
+
+class Person {
+	constructor(name, age, address) {
+		this.name = name;
+		this.age = age;
+		this.address = address;
+	}
+
+	printDetails() {
+		console.log(`Name = ${this.name}, Age = ${this.age}, Address = ${this.address}`);
+	}
+}
+
+class Student extends Person {
+	constructor(name, age, address, collegeName) {
+		super(name, age, address);
+		this.collegeName = collegeName;
+	}
+	printDetails() {
+		console.log(`Name = ${this.name}, Age = ${this.age}, Address = ${this.address}, CollegeName = ${this.collegeName}`);
+	}
+}
+
+var objStudent1 = new Student("Avinash", 20, "Vasai Rd", "VidyaVasini College");
+var objStudent2 = new Student("Sandeep", 21, "Vasai Rd", "Vartak College");
+
+objStudent1.printDetails();
+objStudent2.printDetails();
+
+
+
+
+
+
+
+
+
