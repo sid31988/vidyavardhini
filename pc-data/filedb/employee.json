@@ -1,0 +1,37 @@
+[
+    {
+        "id": 1,
+        "name": "Avinash Maurya",
+        "dept": "IT DEV",
+        "designationId": 1,
+        "managerId": 2
+    },
+    {
+        "id": 2,
+        "name": "Sujit Sarkar",
+        "dept": "IT DEV",
+        "designationId": 2,
+        "managerId": 3
+    },
+    {
+        "id": 3,
+        "name": "Paritosh Parmar",
+        "dept": "IT DEV",
+        "designationId": 3,
+        "managerId": 4
+    },
+    {
+        "id": 4,
+        "name": "Shishir Bharadwaj",
+        "dept": "IT DEV",
+        "designationId": 4,
+        "managerId": 5
+    },
+    {
+        "id": 5,
+        "name": "Pratishta Powle",
+        "dept": "IT DEV",
+        "designationId": 5,
+        "managerId": null
+    }
+]

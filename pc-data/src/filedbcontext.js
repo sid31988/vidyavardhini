@@ -26,11 +26,46 @@ module.exports.FileDbContext = class FileDbContext extends BaseDbContext {
         });
     }
 
-    // overidding super.insert
-    update(item, callback) {}
+    // overidding super.update
+    update(item, callback) {
+        this.read(null, (err, items) => {
+            var dbItem = items.filter(x => x.id == item.id);
+            for(var x in item) {
+                dbItem[x] = item[x];
+            }
+            var jsonString = JSON.stringify(items);
+            this.fileHelper.writeToFile(this.entityName, jsonString, (err, message) => {
+                if(typeof err != "undefined" && err != null) {
+                    callback(err, null);
+                }
+                else {
+                    callback(null, {
+                        updateCount: 1,
+                        totalRecords: items.length
+                    });
+                }
+            });
+        });
+    }
 
-    // overidding super.insert
-    delete(item, callback) {}
+    // overidding super.delete
+    delete(item, callback) {
+        this.read(null, (err, items) => {
+            items = items.filter(x => x.id != item.id);
+            var jsonString = JSON.stringify(items);
+            this.fileHelper.writeToFile(this.entityName, jsonString, (err, message) => {
+                if(typeof err != "undefined" && err != null) {
+                    callback(err, null);
+                }
+                else {
+                    callback(null, {
+                        updateCount: 1,
+                        totalRecords: items.length
+                    });
+                }
+            });
+        });
+    }
 
     // overidding super.insert
     read(id, callback) {
