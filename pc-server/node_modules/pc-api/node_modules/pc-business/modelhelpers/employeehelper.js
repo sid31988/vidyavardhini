@@ -1,11 +1,13 @@
+const HelperConfig = require("./config.json");
 const DbContextFactory = require("pc-data").DbContextFactory;
 const ContextTypeEnum = require("pc-data").ContextTypeEnum;
 const EmployeeModel = require("../models/employeemodel").EmployeeModel;
+const DbContextType = ContextTypeEnum[HelperConfig.HelperSettings.DesignationHelper.DbContextType];
 
 module.exports.EmployeeHelper = class EmployeeHelper {
     constructor() {
         this.dbContextFactory = new DbContextFactory();
-        this.dbContext = this.dbContextFactory.createContext(ContextTypeEnum.FileDbContext, "employee");
+        this.dbContext = this.dbContextFactory.createContext(DbContextType, "employee");
     }
 
     read(id, callback) {

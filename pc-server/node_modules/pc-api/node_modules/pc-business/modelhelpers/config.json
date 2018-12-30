@@ -1,0 +1,8 @@
+{
+    "HelperSettings": {
+        "DesignationHelper": { "DbContextType": "FileDbContext" },
+        "EmployeeHelper": { "DbContextType": "DocumentDbContext" },
+        "TimesheetHelper": { "DbContextType": "FileDbContext" },
+        "UserHelper": { "DbContextType": "FileDbContext" }
+    }
+}

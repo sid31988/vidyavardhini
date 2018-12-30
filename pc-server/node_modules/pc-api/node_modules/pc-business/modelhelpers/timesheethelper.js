@@ -1,11 +1,13 @@
+const HelperConfig = require("./config.json");
 const DbContextFactory = require("pc-data").DbContextFactory;
 const ContextTypeEnum = require("pc-data").ContextTypeEnum;
 const TimesheetModel = require("../models/timesheetmodel").TimesheetModel;
+const DbContextType = ContextTypeEnum[HelperConfig.HelperSettings.DesignationHelper.DbContextType];
 
 module.exports.TimesheetHelper = class TimesheetHelper {
     constructor() {
         this.dbContextFactory = new DbContextFactory();
-        this.dbContext = this.dbContextFactory.createContext(ContextTypeEnum.FileDbContext, "timesheet");
+        this.dbContext = this.dbContextFactory.createContext(DbContextType, "timesheet");
     }
 
     read(employeeId, date, callback) {

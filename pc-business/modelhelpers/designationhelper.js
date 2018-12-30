@@ -1,11 +1,13 @@
+const HelperConfig = require("./config.json");
 const DbContextFactory = require("pc-data").DbContextFactory;
 const ContextTypeEnum = require("pc-data").ContextTypeEnum;
 const DesignationModel = require("../models/designationmodel").DesignationModel;
+const DbContextType = ContextTypeEnum[HelperConfig.HelperSettings.DesignationHelper.DbContextType];
 
 module.exports.DesignationHelper = class DesignationHelper {
     constructor() {
         this.dbContextFactory = new DbContextFactory();
-        this.dbContext = this.dbContextFactory.createContext(ContextTypeEnum.FileDbContext, "designation");
+        this.dbContext = this.dbContextFactory.createContext(DbContextType, "designation");
     }
 
     read(id, callback) {

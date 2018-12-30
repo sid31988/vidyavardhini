@@ -1,4 +1,6 @@
 const FileDbContext = require("./filedbcontext").FileDbContext;
+const DocumentDbContext = require("./documentdbcontext").DocumentDbContext;
+
 const ContextTypeEnum = {
     FileDbContext: 0,
     DocumentDbContext: 1,
@@ -12,7 +14,7 @@ module.exports.DbContextFactory = class DbContextFactory {
             case ContextTypeEnum.FileDbContext:
                 return new FileDbContext(entityName);
             case ContextTypeEnum.DocumentDbContext:
-                return null;
+                return new DocumentDbContext(entityName);
             case ContextTypeEnum.SequelDbContext:
                 return null;
         }

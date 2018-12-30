@@ -10,6 +10,18 @@ MongoClient.connect(mongoUrl, { useNewUrlParser: true }, function (err, client) 
     }
     else {
         const timesheetCollection = client.db("vidyavardhini").collection("timesheet");
+
+        /*timesheetCollection.insertOne({ "employeeId": "1", "date": "12-03-2018", "hours": "9" }, (err, result) => {
+            if(typeof err != "undefined" && err != null) {
+                console.log(`Error found while insert`, err);
+            }
+            else {
+                console.log(`Insert successfull`, result)
+            }
+            client.close();
+        });
+
+        return;*/
         timesheetCollection.find({ $and: [
             { "employeeId": "1" },
             { "date": "12-03-2018" }
@@ -19,8 +31,17 @@ MongoClient.connect(mongoUrl, { useNewUrlParser: true }, function (err, client) 
             }
             else {
                 console.log(`Timesheet data found: `, timesheetData);
+                client.close();
+                /*timesheetCollection.deleteOne(timesheetData[0], (err, result) => {
+                    if(typeof err != "undefined" && err != null) {
+                        console.log(`Error while deleting: `, err);
+                    }
+                    else {
+                        console.log(`Delete successfull`, result);
+                    }
+                });*/
 
-                timesheetCollection.updateOne({ "employeeId": timesheetData[0].employeeId, "date": timesheetData[0].date }, { $set: { "hours": 10 } }, { upsert: true }, (err, result) => {
+                /*timesheetCollection.updateOne({ "employeeId": timesheetData[0].employeeId, "date": timesheetData[0].date }, { $set: { "hours": 10 } }, { upsert: true }, (err, result) => {
                     if(typeof err != "undefined" && err != null) {
                         console.log(`Error while reading from collection timesheet`, err);
                     }
@@ -28,7 +49,7 @@ MongoClient.connect(mongoUrl, { useNewUrlParser: true }, function (err, client) 
                         console.log(`Timesheet data updated`, result);
                     }
                     client.close();
-                });
+                });*/
             }
         });
     }
