@@ -4,6 +4,7 @@ const UserHelper = pcBusiness.ModelHelpers.UserHelper;
 
 module.exports.UserApi = class UserApi extends ApiBase{
     constructor() {
+        super();
         this.userHelper = new UserHelper();
     }
 
